@@ -1,0 +1,121 @@
+# See https://hub.docker.com/_/mariadb
+
+# See README.md
+
+# sudo docker network inspect csvuploader_default
+
+# sudo docker-compose -f Dockerfile up --build --remove-orphans
+
+version: '3'
+services:
+  # A container just so we can effectively do:
+  # sudo docker exec -it csvuploader_api bash -c "composer run reseed"
+  # Note we're sharing the same code volume which the api container already setup.
+  # sudo docker exec -it csvuploader_firstboot sh
+#  firstboot:
+#    container_name: csvuploader_firstboot
+#    build:
+#      context: .
+#      dockerfile: ./firstboot.Dockerfile
+#    tty: true
+#    working_dir: /var/www
+#    links:
+#      - db:mysql
+#    environment:
+#      - DB_HOST=db
+#    networks:
+#      - csvuploader-network
+#    depends_on:
+#      - spa
+#      - apiweb
+#      - api
+#      - db
+
+  # Nginx Service - This is just the webserver interface to the php container.
+  # Note we're sharing the same code volume which the api container already setup.
+  # sudo docker exec -it csvuploader_apiweb sh
+  apiweb:
+    #hostname: apiweb.csvuploader.localhost.com
+    container_name: deil_apiweb
+    build:
+      context: .
+      dockerfile: ./apiweb.Dockerfile
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    volumes:
+      #- './api:/var/www' # mirror ./api to container var www folder
+      - api_code:/var/www
+      #- '/var/www/vendor'
+    ports:
+      - "8000:80"
+      - "8443:443"
+    depends_on:
+      - api
+      - db
+  #    environment:
+  #      - NGINX_HOST=localhost
+  #      - NGINX_PORT=80
+
+  # Laravel API -- Note that we share the same volume here also with the nginx webserver for fpm as well as the
+  # firstboot container when runs migrations. So we just use a named volume instead of using a container filesystem.
+  # sudo docker exec -it csvuploader_api /bin/bash
+  api:
+    #hostname: api.csvuploader.localhost.com
+    container_name: deil_api
+    build:
+      context: .
+      dockerfile: ./api.Dockerfile
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    volumes:
+      #- './api:/var/www' # mirror ./api to container var www folder
+      - api_code:/var/www
+      #- '/var/www/vendor'
+    environment:
+      - SERVICE_NAME=apiweb
+      - SERVICE_TAGS=dev
+      - DB_HOST=db
+    expose:
+      - 9000
+    links:
+      - db:mysql
+    depends_on:
+      - db
+
+  # MariaDB DB -- We store the db in the container, as we prefer it gets wiped on docker down.
+  # sudo docker exec -it csvuploader_db /bin/bash
+  # mysql -uroot -ppassword
+  # show databases;
+  # use csvuploader;
+  # show tables;
+  db:
+    #hostname: db.csvuploader.localhost.com
+    hostname: localhost
+    container_name: deil_db
+    build:
+      context: .
+      dockerfile: ./db.Dockerfile
+    restart: always
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MARIADB_DATABASE=${DB_DATABASE} # CREATE DATABASE csvuploader;
+      - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD} # CREATE USER 'csvuploader' IDENTIFIED BY 'password'; GRANT ALL ON *.* TO 'csvuploader'@'%';
+      - MARIADB_USER=${DB_USERNAME}
+      - MARIADB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      # - csvuploader_db:/var/lib/mysql #map to docker volume
+      # - ./db:/var/lib/mysql #map to local folder
+      - ./db/sql:/docker-entrypoint-initdb.d
+
+volumes:
+  api_code:
+#  spa_code:
