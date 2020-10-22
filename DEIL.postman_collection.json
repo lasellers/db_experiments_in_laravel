@@ -1,0 +1,454 @@
+{
+	"info": {
+		"_postman_id": "7b1f506c-90cb-489f-839f-e1d1d6d0d6c4",
+		"name": "DEIL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "root api",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0f59556f-864c-4b49-a877-2d1b8cd181aa",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}",
+					"host": [
+						"{{API_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "root web",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e85c739-d0d4-479a-8d19-689c6e7d4f67",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{WEB_URL}}",
+					"host": [
+						"{{WEB_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "students",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b203312-3f5b-469e-b1b9-a5520655cf4b",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/students",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "teachers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4087e94-2f49-4d49-85f1-07b2e1d60d19",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/teachers",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"teachers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "student/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e75d879f-da65-4fa2-a426-a64368610bf5",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/student/1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"student",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "student/-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3dde162f-ac42-475e-90f2-f4a014ddaf31",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/student/-1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"student",
+						"-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "teacher/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c5742a41-ed52-486c-9c5c-22a8a914b733",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/teacher/1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"teacher",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "teacher/-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d45ffef-751e-4ebe-b7b2-89682fbb92a8",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/teacher/-1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"teacher",
+						"-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "course/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "230ebe1d-a2da-4257-8999-b600b55fee70",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/course/1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"course",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "course/-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b5636d1f-fd56-41f8-90e3-9c80199942ba",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/course/-1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"course",
+						"-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "grade/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "798aaba5-9ddd-4115-9f48-645eac4c2e84",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/grade/1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"grade",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "grade/-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "19e30b8d-91f8-43a8-a428-0e7e2df1167d",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/grade/-1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"grade",
+						"-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "courses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/courses",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"courses"
+					]
+				},
+				"description": "message"
+			},
+			"response": []
+		},
+		{
+			"name": "grades",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/grades",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"grades"
+					]
+				},
+				"description": "message"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "30b0f80d-1a15-4e50-9685-83c1d575af37",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9eab0ba4-9989-43ac-aba1-48bb3b67ba2d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "80f80f40-c5ea-493b-8b8f-4eb05912270e",
+			"key": "API_URL",
+			"value": "localhost:8000/api"
+		},
+		{
+			"id": "0da97faf-4330-432e-a0fd-e8c323275c94",
+			"key": "WEB_URL",
+			"value": "localhost:8000"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

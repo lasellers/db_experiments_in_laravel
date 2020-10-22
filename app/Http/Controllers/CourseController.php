@@ -22,5 +22,4 @@ class CourseController extends Controller
             return self::returnAPIError($e);
         }
     }
-
 }

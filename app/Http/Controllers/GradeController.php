@@ -23,5 +23,4 @@ class GradeController extends Controller
             return self::returnAPIError($e);
         }
     }
-
 }

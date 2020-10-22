@@ -23,5 +23,4 @@ class StudentController extends Controller
             return self::returnAPIError($e);
         }
     }
-
 }
