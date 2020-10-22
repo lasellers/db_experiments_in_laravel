@@ -5,16 +5,12 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\Student;
 use App\Models\Course;
 use App\Models\Teacher;
 use Tests\TestCase;
 
 class CourseTest extends TestCase
 {
-    //const UNIT_EXPECTED_STRING = "mock";
-    //protected $modelClassName = Course::class;
-
     /**
      * @test
      */

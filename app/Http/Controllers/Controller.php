@@ -12,7 +12,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public static function returnAPIError(\Exception $e)
+    /**
+     * @param \Exception $e
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public static function returnAPIError(\Exception $e): \Illuminate\Http\JsonResponse
     {
         if (app()->environment('production')) {
             return response()->json([

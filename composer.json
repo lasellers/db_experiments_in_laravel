@@ -68,15 +68,15 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "lint": "phplint app tests",
-        "plint": "php-parallel-lint app tests",
-        "phpcs": "phpcs app tests --standard=psr2 -sp --colors",
-        "phpcbf": "phpcbf app tests --standard=psr2 -sp --colors",
+        "lint2": "phplint app tests",
+        "lint3": "php-parallel-lint app tests",
+        "lint": "phpcs app tests --standard=psr2 -sp --colors",
+        "lint-fix": "phpcbf app tests --standard=psr2 -sp --colors",
         "phpstan": [
             "phpstan analyse -c phpstan.neon app --level max --no-progress",
             "phpstan analyse -c phpstan-tests.neon tests --level 4 --no-progress"
         ],
-        "phpunit": "phpunit --verbose --colors=always",
+        "phpunit": "phpunit --verbose --colors=always tests",
         "test": [
             "@lint",
             "@phpstan",

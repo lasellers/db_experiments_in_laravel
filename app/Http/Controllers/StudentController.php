@@ -9,11 +9,18 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function all()
     {
         return Student::with('courses')->get();
     }
 
+    /**
+     * @param StudentRequest $request
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|\Illuminate\Http\JsonResponse|null
+     */
     public function getById(StudentRequest $request)
     {
         $id = $request->get('id');

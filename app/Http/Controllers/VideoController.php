@@ -8,12 +8,19 @@ use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {
+    /**
+     * @return Video[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function all()
     {
         return Video::all();
     }
 
-    public function getById($id)
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getById($id): Video
     {
         return Video::find($id);
     }

@@ -74,7 +74,8 @@ class GradeTest extends TestCase
 
         $this->assertEquals($course->teacher_id, $item['teacher']['id']);
 
-        //$course->delete();
-        //$teacher->delete();
+        //
+        $course->delete();
+        $teacher->delete();
     }
 }

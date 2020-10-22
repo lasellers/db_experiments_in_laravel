@@ -7,15 +7,11 @@ namespace Tests\Unit\Models;
 
 use App\Models\Student;
 use App\Models\Course;
-use App\Models\Teacher;
 use App\Models\Grade;
 use Tests\TestCase;
 
 class GradeTest extends TestCase
 {
-    const UNIT_EXPECTED_STRING = "mock";
-    protected $modelClassName = Grade::class;
-
     /**
      * @test
      */

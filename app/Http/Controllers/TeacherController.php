@@ -10,11 +10,18 @@ use Illuminate\Http\Response;
 
 class TeacherController extends Controller
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function all()
     {
         return Teacher::with('courses')->get();
     }
 
+    /**
+     * @param TeacherRequest $request
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|\Illuminate\Http\JsonResponse
+     */
     public function getById(TeacherRequest $request)
     {
         $id = $request->get('id');
@@ -24,21 +31,4 @@ class TeacherController extends Controller
             return self::returnAPIError($e);
         }
     }
-
-    /*
-    public function getAll(Request $request)
-    {
-        try {
-            $comments = Teacher::with(['patient', 'practitioner'])
-                ->orderBy('id', 'desc')
-                ->get();
-            return response()->json($comments->toArray());
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Teacher lookup error ' . $e->getMessage(),
-                Response::HTTP_INTERNAL_SERVER_ERROR
-            ]);
-        }
-    }
-    */
 }

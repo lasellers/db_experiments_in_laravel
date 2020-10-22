@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Student;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class StudentService
@@ -15,9 +16,9 @@ class StudentService
      * left join courses c on sc.course_id=c.id
      * left join teachers t on c.teacher_id=t.id
      *
-     * @return Student
+     * @return \Illuminate\Support\Collection<Student>
      */
-    public function teachers()
+    public function teachers(): \Illuminate\Support\Collection
     {
         return DB::table('students')
             ->select(
@@ -44,7 +45,7 @@ class StudentService
             ->get();
     }
 
-    public function teachers2()
+    public function teachers2(): Collection
     {
        // return Student::with('courses')
        //     ->get();

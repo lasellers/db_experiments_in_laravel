@@ -2,29 +2,28 @@
 
 namespace Database\Factories;
 
-use App\Models\StudentCourse;
+use App\Models\CourseStudent;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class StudentCourseFactory extends Factory
+class CourseStudentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = StudentCourse::class;
+    protected $model = CourseStudent::class;
 
     /**
      * Define the model's default state.
      *
      * @return array
-     * @throws \Exception
      */
     public function definition()
     {
         return [
-            'student_id' => random_int(0, 3),
-            'course_id' => random_int(0, 3)
+            'course_id' => random_int(0, 5),
+            'student_id' => random_int(0, 5),
         ];
     }
 }

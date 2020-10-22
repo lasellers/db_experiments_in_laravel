@@ -13,7 +13,7 @@ class StudentRequest extends FormRequest
      * FormRequest tries to redirect us to an url by default -- this makes it return a proper json error.
      * @param Validator $validator
      */
-    protected function failedValidation(Validator $validator)
+    protected function failedValidation(Validator $validator): void
     {
         throw new HttpResponseException(response()->json(
             ['errors' => $validator->errors()],
@@ -36,7 +36,7 @@ class StudentRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'id' => 'required|integer|exists:students,id'

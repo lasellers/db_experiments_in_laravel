@@ -11,6 +11,7 @@ use App\Models\Course;
 use App\Services\StudentService;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
+use App\Models\CourseStudent;
 
 class StudentServiceTest extends TestCase
 {
@@ -31,7 +32,7 @@ class StudentServiceTest extends TestCase
     }
 
     /**
-     * test
+     * @test
      */
     public function courses()
     {
@@ -39,39 +40,48 @@ class StudentServiceTest extends TestCase
         $relations = $this->service->teachers();
         $this->assertNotNull($relations);
         $items = $relations->toArray();
-        print_r($items);
-        $this->assertCount(5, $items);
-        $this->assertCount(2, $items[0]['courses']);
+        $this->assertCount(8, $items);
     }
 
     /**
-     * test
+     * @test
      * @throws \Exception
      */
-    /*public function coursesNew()
+    public function coursesNew()
     {
+        $student = Student::factory()->create();
         $teacher = Teacher::factory()->create();
 
-        $course = [
-            'teacher_id' => $teacher->id
-        ];
-        $course1 = Course::factory()->create($course);
-        $course2 = Course::factory()->create($course);
+        $course1 = Course::factory()->create(['teacher_id' => $teacher->id]);
+        $course2 = Course::factory()->create(['teacher_id' => $teacher->id]);
+
+        $courseStudent1 = CourseStudent::factory()->create([
+            'course_id' => $course1->id,
+            'student_id' => $student->id,
+        ]);
+        $courseStudent2 = CourseStudent::factory()->create([
+            'course_id' => $course2->id,
+            'student_id' => $student->id,
+        ]);
 
         //
-        $relations = Teacher::with('courses')
-            ->find($teacher->id);
+        $relations = Student::with('courses')
+            ->find($student->id);
         $this->assertNotNull($relations);
         $item = $relations->toArray();
 
-        $this->assertEquals($teacher->id, $item['id']);
+        $this->assertEquals($student->id, $item['id']);
 
         $this->assertCount(2, $item['courses']);
 
+        //
+        $courseStudent2->delete();
+        $courseStudent1->delete();
         $course2->delete();
         $course1->delete();
         $teacher->delete();
-    }*/
+        $student->delete();
+    }
 
     /**
      * @test
@@ -82,13 +92,12 @@ class StudentServiceTest extends TestCase
         $relations = $this->service->teachers();
         $this->assertNotNull($relations);
         $items = $relations->toArray();
-      //  print_r($items);
-        $this->assertCount(5+3, $items);
-       // $this->assertCount(2, $items[0]['courses']);
+        $this->assertCount(8, $items);
     }
 
     /**
      * test
+     * @todo
      */
     public function teachers2()
     {
@@ -96,61 +105,7 @@ class StudentServiceTest extends TestCase
         $relations = $this->service->teachers2();
         $this->assertNotNull($relations);
         $items = $relations->toArray();
-        print_r($items);
         $this->assertCount(5, $items);
         $this->assertCount(2, $items[0]['courses']);
-    }
-
-    /**
-     * test
-     */
-    public function relations2()
-    {
-        /*
-        $teacher = factory(Teacher::class)->create([
-        ]);
-        $this->assertModelCreated($teacher);
-
-        // add 2 filters
-        $filter1 = Filter::where("name", 'control')->first();
-
-        $teacher->addFilter($filter1->name);
-        $teacher->addFilter($filter2->name);
-
-        //
-        $relations = Teacher::with('module')
-            ->with('filters')
-            ->find($teacher->id);
-        $this->assertNotNull($relations);
-        $item = $relations->toArray();
-
-        //
-        $this->assertIsArray($item['module']);
-        $this->assertEquals($item['module_id'], $item['module']['id']);
-
-        //
-        $this->assertIsArray($item['filters']);
-
-        $this->assertCount(2, $item['filters']);
-
-        $this->assertIsSorted($item['filters'], [
-            [$filter1->id, $filter2->id],
-        ]);
-
-        $this->assertKeysPresent(Teacher::class, $item);
-
-        // try removing the filters and see if we have a 0 count now
-        $teacher->removeFilter($filter1->name);
-        $teacher->removeFilter($filter2->name);
-
-        $item = Teacher::with('module')
-            ->with('filters')
-            ->find($teacher->id)->toArray();
-        $this->assertNotNull($item);
-        $this->assertCount(0, $item['filters']);
-
-        //
-        $this->deleteAndAssertDeleted($teacher);
-        */
     }
 }
