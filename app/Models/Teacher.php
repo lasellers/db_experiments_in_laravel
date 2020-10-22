@@ -9,6 +9,10 @@ class Teacher extends Model
 {
     use HasFactory;
 
+    /**
+     * select t.*,c.* from teachers t left join courses c on c.teacher_id=t.id
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function courses() {
         return $this->hasMany(Course::class, 'teacher_id', 'id');
     }

@@ -14,28 +14,19 @@ class TeacherSeeder extends Seeder
     public function run()
     {
         Teacher::create([
-            'salutation' => "Dr", "last_name" => "Booker", "first_name" => "John"
+            'salutation' => "Dr", "last_name" => "Booker", "first_name" => "John", "email"=>"jon_booker@college.com"
         ]);
         Teacher::create([
-            'salutation' => "Dr", "last_name" => "Booker", "first_name" => "James"
+            'salutation' => "Dr", "last_name" => "Booker", "first_name" => "James", "email"=>"james_booker@college.com"
         ]);
         Teacher::create([
-            'salutation' => "Dr", "last_name" => "Brooke", "first_name" => "Kelly"
+            'salutation' => "Dr", "last_name" => "Brooke", "first_name" => "Kelly", "email"=>"kelly_brooke@college.com"
         ]);
         Teacher::create([
-            'salutation' => "Dr", "last_name" => "James", "first_name" => "Francis"
+            'salutation' => "Dr", "last_name" => "James", "first_name" => "Debbie", "email"=>"debbie_james@college.com"
         ]);
         Teacher::create([
-            'salutation' => "Dr", "last_name" => "Kneller", "first_name" => "Kevin"
-        ]);
-        Teacher::create([
-            'salutation' => "Dr", "last_name" => "Oliver", "first_name" => "Lucas"
-        ]);
-        Teacher::create([
-            'salutation' => "Dr", "last_name" => "William", "first_name" => "Liam"
-        ]);
-        Teacher::create([
-            'salutation' => "Dr", "last_name" => "Harper", "first_name" => "Isabella"
+            'salutation' => "Dr", "last_name" => "Kneller", "first_name" => "Kevin", "email"=>"kevin_kneller@college.com"
         ]);
     }
 }

@@ -18,9 +18,9 @@ class CreateCoursesTable extends Migration
             $table->string('course');
             $table->string('department');
             $table->string('description');
-            $table->string('days_of_week');
-            $table->time('start_time');
-            $table->time('end_time');
+            //$table->string('days_of_week');
+            //$table->time('start_time');
+            //$table->time('end_time');
             $table->integer('teacher_id');
             $table->timestamps();
         });
