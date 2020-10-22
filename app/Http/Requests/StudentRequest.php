@@ -9,7 +9,10 @@ use Illuminate\Http\Response;
 
 class StudentRequest extends FormRequest
 {
-    // FormRequest tries to redirect us to an url by default -- this makes it return a proper json error.
+    /**
+     * FormRequest tries to redirect us to an url by default -- this makes it return a proper json error.
+     * @param Validator $validator
+     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json(
