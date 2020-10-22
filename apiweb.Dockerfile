@@ -1,11 +1,11 @@
 FROM nginx:stable
 
 ## docker
-# sudo docker build -t csvuploader_spa -f apiweb.Dockerfile .
-# sudo docker run -it --rm -v ${PWD}:/app -v /app/node_modules -p 80:80 -p 443:443 --name csvuploader_apiweb csvuploader_apiweb
+# sudo docker build -t deil_spa -f apiweb.Dockerfile .
+# sudo docker run -it --rm -v ${PWD}:/app -v /app/node_modules -p 80:80 -p 443:443 --name deil_apiweb deil_apiweb
 
 ## docker-compose
-# sudo docker exec -it csvuploader_apiweb /bin/bash
+# sudo docker exec -it deil_apiweb /bin/bash
 # nginx -v
 # nginx -t
 
@@ -20,8 +20,8 @@ FROM nginx:stable
 # /etc/init.d/nginx start
 
 ##
-# sudo docker build -t csvuploader_apiweb -f apiweb.Dockerfile .
-# sudo docker exec -it csvuploader_apiweb sh
+# sudo docker build -t deil_apiweb -f apiweb.Dockerfile .
+# sudo docker exec -it deil_apiweb sh
 
 WORKDIR /var/www
 

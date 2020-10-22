@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
+use App\Http\Requests\TeacherRequest;
+use App\Models\Course;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class TeacherController extends Controller
 {
-    public function index()
+    public function all()
     {
-        return Teacher::all();
+        return Teacher::with('courses')->get();
     }
 
+    public function getById(TeacherRequest $request)
+    {
+        $id = $request->get('id');
+        try {
+            return Teacher::with('courses')->findOrFail($id);
+        } catch (\Exception $e) {
+            return self::returnAPIError($e);
+        }
+    }
+
+    /*
     public function getAll(Request $request)
     {
         try {
@@ -28,4 +40,5 @@ class TeacherController extends Controller
             ]);
         }
     }
+    */
 }

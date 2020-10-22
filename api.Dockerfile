@@ -1,6 +1,6 @@
-# sudo docker build -t csvuploader_api -f api.Dockerfile .
+# sudo docker build -t deil_api -f api.Dockerfile .
 
-# sudo docker exec -it csvuploader_api /bin/bash
+# sudo docker exec -it deil_api /bin/bash
 # php -v
 # php artisan env
 # php artisan --version
@@ -15,7 +15,7 @@
 # composer run lint
 # composer run lint-fix
 
-# sudo docker exec -it csvuploader_api bash -c "composer run reseed"
+# sudo docker exec -it deil_api bash -c "composer run reseed"
 
 FROM php:7.4-fpm
 

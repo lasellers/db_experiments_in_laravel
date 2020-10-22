@@ -3,12 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Models\Teacher;
 use App\Http\Controllers\TeacherController;
-use App\Models\Student;
 use App\Http\Controllers\StudentController;
-use App\Models\Course;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\GradeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +19,22 @@ use App\Http\Controllers\CourseController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::get('/', function(Request $request) {
+    return 'Backend API. Refer to README.md.';
 });
 
-Route::get('hello', function(Request $request) {
-    return 'Hello World';
-});
+Route::get('teachers', [TeacherController::class, 'all']);
+Route::get('teacher/{id}', [TeacherController::class, 'getById']);
 
-Route::get('teachers', [TeacherController::class, 'index']);
-Route::get('teacher/{id}', [TeacherController::class, 'get']);
+Route::get('students', [StudentController::class, 'all']);
+Route::get('student/{id}', [StudentController::class, 'getById']);
 
+Route::get('courses', [CourseController::class, 'all']);
+Route::get('course/{id}', [CourseController::class, 'getById']);
+
+Route::get('grades', [GradeController::class, 'all']);
+Route::get('grade/{id}', [GradeController::class, 'getById']);

@@ -22,6 +22,7 @@ class GradeFactory extends Factory
      */
     public function definition()
     {
+        mt_srand(hrtime(true));
         $grade = random_int(0, 100);
         $letters = [0 => 'F', 1 => 'F', 2 => 'F', 3 => 'F', 4 => 'F', 5 => 'F', 6 => 'D', 7 => 'C', 8 => 'B', 9 => 'A', 10 => 'A'];
         $letter_grade = $letters[(int)($grade / 10)];

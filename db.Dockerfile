@@ -1,9 +1,9 @@
-# sudo docker build -t csvuploader_db -f db.Dockerfile .
+# sudo docker build -t deil_db -f db.Dockerfile .
 
-# sudo docker exec -it csvuploader_db /bin/bash
+# sudo docker exec -it deil_db /bin/bash
 # mysql -uroot -ppassword
 # show databases;
-# use csvuploader;
+# use deil;
 # show tables;
 
 FROM bitnami/mariadb:latest
