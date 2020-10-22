@@ -10,7 +10,7 @@ use App\Models\Course;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
-class TeacherTest extends TestCase
+class CourseTest extends TestCase
 {
     use DatabaseTransactions;
 
@@ -27,43 +27,40 @@ class TeacherTest extends TestCase
     /**
      * @test
      */
-    public function courses()
+    public function teacher()
     {
-        //
-        $relations = Teacher::with('courses')->get();
+        $relations = Course::with('teacher')->get();
         $this->assertNotNull($relations);
         $items = $relations->toArray();
         $this->assertCount(5, $items);
-        $this->assertCount(2, $items[0]['courses']);
+        foreach ($items as $item) {
+            $this->assertEquals($item['teacher_id'], $item['teacher']['id']);
+        }
     }
 
     /**
      * @test
      * @throws \Exception
      */
-    public function coursesNew()
+    public function teacherNew()
     {
         $teacher = Teacher::factory()->create();
 
-        $course = [
+        $course = Course::factory()->create([
             'teacher_id' => $teacher->id
-        ];
-        $course1 = Course::factory()->create($course);
-        $course2 = Course::factory()->create($course);
+        ]);
 
         //
-        $relations = Teacher::with('courses')
-            ->find($teacher->id);
+        $relations = Course::with('teacher')
+            ->find($course->id);
+
         $this->assertNotNull($relations);
         $item = $relations->toArray();
 
-        $this->assertEquals($teacher->id, $item['id']);
+        $this->assertEquals($course->teacher_id, $item['teacher']['id']);
 
-        $this->assertCount(2, $item['courses']);
-
-        $course2->delete();
-        $course1->delete();
-        $teacher->delete();
+        //$course->delete();
+        //$teacher->delete();
     }
 
     /**

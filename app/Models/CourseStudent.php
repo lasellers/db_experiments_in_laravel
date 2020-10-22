@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StudentCourse extends Model
+class CourseStudent extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+    //protected $table = 'course_student';
 
     public function students() {
         return $this->hasMany(Course::class, 'course_id', 'id');

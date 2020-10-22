@@ -3,20 +3,26 @@
 ./vendor/bin/phpunit tests/Integration/Models/TeacherTest.php
 */
 
-namespace Tests\Integration\Models;
+namespace Tests\Integration\Services;
 
+use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Course;
+use App\Services\StudentService;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
-class TeacherTest extends TestCase
+class StudentServiceTest extends TestCase
 {
     use DatabaseTransactions;
+
+    /** @var StudentService */
+    protected $service;
 
     protected function setUp(): void
     {
         parent::setUp();
+        $this->service = new StudentService();
     }
 
     protected function tearDown(): void
@@ -25,23 +31,24 @@ class TeacherTest extends TestCase
     }
 
     /**
-     * @test
+     * test
      */
     public function courses()
     {
         //
-        $relations = Teacher::with('courses')->get();
+        $relations = $this->service->teachers();
         $this->assertNotNull($relations);
         $items = $relations->toArray();
+        print_r($items);
         $this->assertCount(5, $items);
         $this->assertCount(2, $items[0]['courses']);
     }
 
     /**
-     * @test
+     * test
      * @throws \Exception
      */
-    public function coursesNew()
+    /*public function coursesNew()
     {
         $teacher = Teacher::factory()->create();
 
@@ -64,6 +71,34 @@ class TeacherTest extends TestCase
         $course2->delete();
         $course1->delete();
         $teacher->delete();
+    }*/
+
+    /**
+     * test
+     */
+    public function teachers()
+    {
+        //
+        $relations = $this->service->teachers();
+        $this->assertNotNull($relations);
+        $items = $relations->toArray();
+        print_r($items);
+        $this->assertCount(5, $items);
+        $this->assertCount(2, $items[0]['courses']);
+    }
+
+    /**
+     * @test
+     */
+    public function teachers2()
+    {
+        //
+        $relations = $this->service->teachers2();
+        $this->assertNotNull($relations);
+        $items = $relations->toArray();
+        print_r($items);
+        $this->assertCount(5, $items);
+        $this->assertCount(2, $items[0]['courses']);
     }
 
     /**

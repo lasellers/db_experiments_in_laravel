@@ -9,6 +9,8 @@ class Teacher extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     /**
      * select t.*,c.* from teachers t left join courses c on c.teacher_id=t.id
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

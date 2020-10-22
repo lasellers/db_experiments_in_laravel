@@ -20,10 +20,9 @@ class StudentTest extends TestCase
      */
     public function courses()
     {
-        /*
         $mock = $this->getMockBuilder($this->modelClassName)
             ->disableOriginalConstructor()
-            ->setMethods(['belongsTo'])
+            ->onlyMethods(['belongsTo'])
             ->getMock();
 
         $mock->expects($this->once())
@@ -33,7 +32,6 @@ class StudentTest extends TestCase
 
         $result = $mock->courses();
         $this->assertEquals(self::UNIT_EXPECTED_STRING, $result);
-        */
     }
 
     /**
@@ -43,15 +41,16 @@ class StudentTest extends TestCase
     {
         $mock = $this->getMockBuilder($this->modelClassName)
             ->disableOriginalConstructor()
-            ->setMethods(['belongsTo'])
+            ->onlyMethods(['belongsTo'])
             ->getMock();
 
         $mock->expects($this->once())
             ->method('belongsTo')
             ->with($this->equalTo(Teacher::class))
-            ->will($this->returnValue(self::UNIT_EXPECTED_STRING));
+            ->will(self::returnSelf());
+           // ->will($this->returnValue(self::UNIT_EXPECTED_STRING));
 
         $result = $mock->teachers();
-        $this->assertEquals(self::UNIT_EXPECTED_STRING, $result);
+       // $this->assertEquals(self::UNIT_EXPECTED_STRING, $result);
     }
 }

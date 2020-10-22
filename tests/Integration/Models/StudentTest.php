@@ -5,12 +5,13 @@
 
 namespace Tests\Integration\Models;
 
+use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Course;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
-class TeacherTest extends TestCase
+class StudentTest extends TestCase
 {
     use DatabaseTransactions;
 
@@ -30,7 +31,7 @@ class TeacherTest extends TestCase
     public function courses()
     {
         //
-        $relations = Teacher::with('courses')->get();
+        $relations = Student::with('courses')->get();
         $this->assertNotNull($relations);
         $items = $relations->toArray();
         $this->assertCount(5, $items);
@@ -38,7 +39,7 @@ class TeacherTest extends TestCase
     }
 
     /**
-     * @test
+     * test
      * @throws \Exception
      */
     public function coursesNew()
@@ -64,6 +65,19 @@ class TeacherTest extends TestCase
         $course2->delete();
         $course1->delete();
         $teacher->delete();
+    }
+
+    /**
+     * test
+     */
+    public function teachers()
+    {
+        //
+        $relations = Student::with('teachers')->get();
+        $this->assertNotNull($relations);
+        $items = $relations->toArray();
+        $this->assertCount(5, $items);
+        $this->assertCount(2, $items[0]['courses']);
     }
 
     /**

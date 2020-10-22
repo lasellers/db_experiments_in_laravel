@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\CourseStudent;
 use Illuminate\Database\Seeder;
 
-class StudentCourseSeeder extends Seeder
+class CourseStudentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,35 +14,35 @@ class StudentCourseSeeder extends Seeder
      */
     public function run()
     {
-        StudentCourse::create([
+        CourseStudent::create([
             'student_id' => 1,
             'course_id' => 1
         ]);
-        StudentCourse::create([
+        CourseStudent::create([
             'student_id' => 1,
             'course_id' => 2
         ]);
-        StudentCourse::create([
+        CourseStudent::create([
             'student_id' => 2,
             'course_id' => 1
         ]);
-        StudentCourse::create([
+        CourseStudent::create([
             'student_id' => 2,
             'course_id' => 1
         ]);
-        StudentCourse::create([
+        CourseStudent::create([
             'student_id' => 2,
             'course_id' => 2
         ]);
-        StudentCourse::create([
+        CourseStudent::create([
             'student_id' => 2,
             'course_id' => 3
         ]);
-        StudentCourse::create([
+        CourseStudent::create([
             'student_id' => 2,
             'course_id' => 4
         ]);
-        StudentCourse::create([
+        CourseStudent::create([
             'student_id' => 3,
             'course_id' => 3
         ]);

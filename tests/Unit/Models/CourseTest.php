@@ -10,31 +10,31 @@ use App\Models\Course;
 use App\Models\Teacher;
 use Tests\TestCase;
 
-class TeacherTest extends TestCase
+class CourseTest extends TestCase
 {
     //const UNIT_EXPECTED_STRING = "mock";
-    //protected $modelClassName = Teacher::class;
+    //protected $modelClassName = Course::class;
 
     /**
      * @test
      */
-    public function courses()
+    public function teacher()
     {
-        $mock = $this->getMockBuilder(Teacher::class)
+        $mock = $this->getMockBuilder(Course::class)
             ->disableOriginalConstructor()
-            ->onlyMethods(['hasMany'])
+            ->onlyMethods(['belongsTo'])
             ->getMock();
 
         $mock->expects($this->once())
-            ->method('hasMany')
+            ->method('belongsTo')
             ->with(
-                $this->equalTo(Course::class),
+                $this->equalTo(Teacher::class),
                 $this->equalTo('teacher_id'),
                 $this->equalTo('id')
             )
             ->will(self::returnSelf());
 
-        $mock->courses();
+        $mock->teacher();
     }
 
 }
