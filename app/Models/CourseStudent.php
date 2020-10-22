@@ -10,7 +10,7 @@ class CourseStudent extends Model
     use HasFactory;
 
     public $timestamps = false;
-    //protected $table = 'course_student';
+    protected $table = 'course_student';
 
     public function students() {
         return $this->hasMany(Course::class, 'course_id', 'id');
