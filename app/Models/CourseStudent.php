@@ -12,12 +12,13 @@ class CourseStudent extends Model
     public $timestamps = false;
     protected $table = 'course_student';
 
-    public function students() {
+    public function students()
+    {
         return $this->hasMany(Course::class, 'course_id', 'id');
     }
 
-    public function courses() {
+    public function courses()
+    {
         return $this->hasMany(Student::class, 'student_id', 'id');
     }
-
 }

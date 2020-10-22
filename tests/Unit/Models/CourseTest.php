@@ -36,5 +36,4 @@ class CourseTest extends TestCase
 
         $mock->teacher();
     }
-
 }

@@ -6,7 +6,7 @@
 namespace Tests\Unit\Models;
 
 use App\Models\Student;
-use App\Models\Courses;
+use App\Models\Course;
 use App\Models\Teacher;
 use Tests\TestCase;
 

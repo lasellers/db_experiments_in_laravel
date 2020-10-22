@@ -16,7 +16,7 @@ class StudentServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        $this->app->singleton('StudentService', function($app){
+        $this->app->singleton('StudentService', function ($app) {
             return new StudentService;
         });
     }

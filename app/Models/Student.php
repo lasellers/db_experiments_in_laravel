@@ -26,7 +26,9 @@ class Student extends Model
     }
 
     /**
-     * select s.id,s.last_name,s.middle_name,s.first_name,t.id,t.last_name,t.first_name, t.email, c.course, c.teacher_id as course_teacher,sc.* from students s
+     * select s.id,s.last_name,s.middle_name,s.first_name,t.id,
+     * t.last_name,t.first_name, t.email, c.course, c.teacher_id as course_teacher,
+     * sc.* from students s
      * left join course_student sc on sc.student_id=s.id
      * left join courses c on sc.course_id=c.id
      * left join teachers t on c.teacher_id=t.id

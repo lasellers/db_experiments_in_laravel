@@ -9,7 +9,8 @@ use Illuminate\Http\Response;
 
 class TeacherController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return Teacher::all();
     }
 
@@ -27,5 +28,4 @@ class TeacherController extends Controller
             ]);
         }
     }
-
 }
